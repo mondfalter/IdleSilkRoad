@@ -3,7 +3,7 @@
 <head> 
     <meta charset="UTF-8" />
     <title>Making your first Phaser 3 Game - Part 1</title>
-    <script src="/IdleSilkRoad/dist/phaser.js"></script>
+    <script src="/IdleSilkRoad/lib/dist/phaser.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -42,7 +42,9 @@ var config = {
         this.load.image('bomb', 'assets/bomb.png');
         this.load.spritesheet('dude', 'assets/dude.png',
         { frameWidth: 32, frameHeight: 48 }
+        
     );
+    game.add.sprite
     }
 
     var platforms;
@@ -86,6 +88,17 @@ var config = {
             frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
             frameRate: 10,
             repeat: -1
+        });
+
+        stars = this.physics.add.group({
+            key: 'star',
+            repeat: 11,
+            setXY: { x: 12, y: 0, stepX: 70 }
+        });
+
+        stars.children.iterate(function (child) {
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+            Phaser.Math.FloatBetween()
         });
 
         cursors = this.input.keyboard.createCursorKeys();
